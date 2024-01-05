@@ -1,0 +1,17 @@
+<nav class="bg-[#228B22] text-white p-4 flex justify-between items-center">
+    <div class="caption text-xl font-bold">Your Caption</div>
+    <div class="profile-container" (click)="toggleDropdown()">
+      <div class="profile-info cursor-pointer flex mr-6">
+        <div >
+            profile
+        </div>  
+        <img src="assets/user.png" alt="User Image" class="ml-4" width="24" height="25">
+      </div>
+      <div class="dropdown" *ngIf="isDropdownOpen">
+        <div class="dropdown-content rounded">
+          <a routerLink="/admin/profile" class="rounded p-2" > My Profile</a>
+          <a (click)="logout()" >Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>

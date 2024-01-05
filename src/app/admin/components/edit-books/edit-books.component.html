@@ -1,0 +1,65 @@
+<div class="p-2 z-40">
+
+    <div class="p-4">
+      <form [formGroup]="formData" (submit)="submit()" class="shadow-md rounded-b-md" enctype="multipart/form-data">
+        <div class="bg-green-400 rounded-t-md p-4">
+          <h2 class="text-white text-lg lg:text-xl font-bold bg-green-400 p-2">EDIT BOOKS</h2>
+        </div>
+      
+        <div  *ngIf="alert" [ngClass]="['p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg',  (condition ? 'bg-green-200' : 'bg-red-200')  ]" role="alert">
+            <span class="font-bold">{{alterType}}:</span> {{alterMessage}}
+        </div>
+        <div class="mt-4 p-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="mb-2 px-5">
+              <input type="text" id="name" formControlName="name" class="shadow-md rounded  py-4  px-3 focus:outline-green-400 w-full" placeholder="Enter book name" >
+              <div *ngIf="formData.get('name')?.invalid && formData.get('name')?.touched"
+                  class="warning text-sm text-red-500">
+                  {{ formData.get('name')?.hasError('required') ? 'name of book is required.' :formData.get('name')?.hasError('pattern') ? 'Name can not be blank.':  'Username must be at least 1 characters long' }}
+              </div>
+            </div>
+
+            <div class="mb-2 px-5">
+              <input type="number"  id="cost" formControlName="cost" class="shadow-md rounded  py-4  px-3 focus:outline-green-400 w-full" placeholder="Enter cost of the book" inputmode="numeric">
+              <div *ngIf="formData.get('cost')?.invalid && formData.get('cost')?.touched"
+                  class="warning text-sm text-red-500">
+                  {{ formData.get('cost')?.hasError('required') ? 'cost is required.' :  'cost must be at least 1 characters long' }}
+               </div>
+            </div>
+
+            <div class="mb-2 px-5">
+              <input type="number" id="nos" formControlName="count" class="shadow-md rounded  py-4  px-3 focus:outline-green-400 w-full" placeholder="Enter nos">
+              <div *ngIf="formData.get('count')?.invalid && formData.get('count')?.touched"
+                  class="warning text-sm text-red-500">
+                  {{ formData.get('count')?.hasError('required') ? 'Nos is required.' : 'Nos must be at least 1 characters long' }}
+              </div>
+            </div>
+      
+            <div class="mb-4 px-5">
+              <input id="image"  type="file" (change)="onFileSelected($event)" class="shadow-md rounded py-4 px-3 focus:outline-green-400 w-full" #imageInput  placeholder="Choose a file" multiple>
+              <!-- <div *ngIf="formData.get('image')?.invalid && formData.get('image')?.touched"  
+                class="warning text-sm text-red-500">
+                {{ formData.get('image')?.hasError('required') ? 'image is required.' : 'Select a image ' }}
+              </div>     -->
+              <div >
+                <img *ngIf="imageUrl" [src]="imageUrl"
+                class="w-20 h-20 mt-4 rounded sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 mx-2" alt="">
+              </div>
+              
+  
+              
+            </div>
+          </div>
+  
+          <div class="flex justify-end mx-auto px-5 py-5">
+            <a routerLink="/admin" class="bg-green-400 hover:bg-[#FFD700] transition duration-200 mr-4 text-white hover:text-[#000000] py-3 px-6 rounded">
+              BACK
+            </a>
+            <button type="submit" class="bg-green-400 hover:bg-[#FFD700] text-white hover:text-[#000000] transition duration-200 py-3  px-6 rounded">
+             SUBMIT
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

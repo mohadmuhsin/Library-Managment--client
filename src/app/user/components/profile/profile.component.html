@@ -1,0 +1,51 @@
+
+
+
+<div class="pt-2   z-40">
+    
+    <div class="">
+        <section class="p-6 bg-white  text-gray-50">
+            <div class=" flex justify-between">
+                <h3 class="font-semibold text-black  text-xl pb-2 ">YOUR PROFILE </h3>
+                <!-- <button class=" border border-md border-white px-3 py-1 rounded">Be a priority designer</button> -->
+            </div>
+           <div class="bg-[#228B22] rounded pb-3 ">
+            <div  *ngIf="alert" [ngClass]="['p-4', 'mb-4', 'text-sm', 'text-green-800', 'rounded-lg',  (condition ? 'bg-green-200' : 'bg-red-200')  ]" role="alert">
+                <span class="font-bold">{{alterType}}:</span> {{alterMessage}}
+            </div>
+            <form [formGroup]="formData" (submit)="editProfile()"  action="" class="container flex flex-col mx-auto space-y-4 pt-2">
+                <!-- Profile Fieldset -->
+                <fieldset class="grid grid-row sm:grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-[#228B22]">
+                    <div class="space-y-2  flex flex-col justify-center items-center">
+                        <img [src]="imageUrl " alt="ldkf"  class=" w-28 h-28 rounded mb-2 " >
+                        <div class="flex items-center justify-center">
+                            <input id="image" #fileInput type="file" (click)="onFileSelected($event)" class="shadow-md  text-white text-xs rounded py-2 px-2 bg-green-600 focus:outline-blue-900 w-32"
+                             placeholder="Change Profile Photo">
+                        </div>
+                    </div>
+                    <div class="grid gap-4 col-span-full lg:col-span-3">
+                        <div class="col-span-full sm:col-span-3">
+                            <label for="username" class="text-sm">Username</label>
+                            <input id="username" formControlName="username"   type="text" placeholder="Username"
+                                class="w-full rounded-md  border-[#228B22] py-2 px-3 text-gray-900">
+                        </div>
+                        <div class="col-span-full sm:col-span-3">
+                            <label for="email" class="text-sm">email</label>
+                            <input id="email" formControlName="email" type="text" placeholder="https://" readonly
+                                class="w-full rounded-md  border-[#228B22] py-2 px-3 text-gray-900">
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- Personal Information Fieldset -->
+                
+
+            <div class="flex justify-end px-4">
+                <button type="submit" 
+                    class="border border-xs border-white  hover:border-[#0B1C39] hover:text-[#0B1C39] duration-200 transition  rounded py-2 px-4  hover:bg-white">Update Profile</button>
+            </div>
+            </form>
+           </div>
+            
+        </section>
+    </div>
+</div>

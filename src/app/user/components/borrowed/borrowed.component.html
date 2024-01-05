@@ -1,0 +1,59 @@
+
+<div class="container mx-auto px-4  py-8">
+    <div class="flex items-center justify-between mb-4">
+        <div>
+            <h2 class="text-2xl font-bold">List of Books</h2>
+            <p class="text-xs">(you can only borrow five books at a time)</p>
+        </div>
+      <div class="relative">
+        <button routerLink="/user" class=" mr-2 pr-3 py-2 px-2 w-36 hover:bg-gray-100 border rounded-md text-sm text-gray-800">Borrow new book </button>
+        <i class="absolute  inset-y-0  px-2 py-2 flex items-center fas fa-search text-blue-600"></i>
+        <input type="text" class="input pl-10 pr-3 py-2 w-64 border rounded-md text-sm text-gray-800" [(ngModel)]="searchQuery" (input)="search()" placeholder="Search..." />
+      </div>
+    </div>  
+  
+    <div class="overflow-x-auto shadow overflow-hidden border-b border-gray-200  rounded-md">
+      <table class="min-w-full divide-y  divide-gray-200">
+        <thead class=" bg-[#0B1C39] ">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+              SL.NO
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+              NAME OF BOOK
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+                IMAGE
+            </th>
+            
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">
+              BORROWED DATE
+            </th>
+            <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-200 uppercase tracking-wider">
+              ACTION
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="books" class="bg-white divide-y divide-gray-200">
+            <tr *ngFor="let item of books  let i = index">
+        
+            <td class="px-6 py-4 whitespace-nowrap">{{i+1}}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{item?.book?.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap"><img [src]="item?.book?.image?.url"  alt="" class="w-16 h-16"></td>
+            <td class="px-6 py-4 whitespace-nowrap">{{item?.date| date: 'medium'}}</td>
+           
+            <td   class="px-6 py-4 whitespace-nowrap text-center">
+                <button (click)="return(item._id)" class="text-red-500 hover:text-red-600" title="Info">
+                  <img class="rounded-t-md w-8 h-8 object-cover animated-image" src="assets/back.png" alt="">
+                </button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="books.length === 0" class="text-center  mt-4 text-md font-mediumflex justify-center items-center">
+        No results found! 
+      </div>
+    </div>
+  
+    
+  </div>
