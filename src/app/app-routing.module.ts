@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
-  {path:"login",canActivate:[userGuard] , component:LoginComponent},
+  {path:"login",canActivate:[userGuard]  , component:LoginComponent},
   {path:"register", canActivate:[userGuard] , component:RegisterComponent},
   {path:"user",loadChildren:()=>import('./user/user.module').then(m=> m.UserModule)},
   {path:"admin",loadChildren:()=>import('./admin/admin.module').then(m=> m.AdminModule)},

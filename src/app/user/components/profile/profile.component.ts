@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
       next:(res:any)=>{
         console.log(res);
         this.profileData = res.data
+        this.imageUrl = res.data.profile.url
         this.formData.patchValue( {
           username:res.data.username,
           email:res.data.email
@@ -52,9 +53,9 @@ export class ProfileComponent implements OnInit {
 
     
     if(data.username === this.profileData.username 
-    // && this.imageUrl === this.profileData?.image
+    && this.imageUrl === this.profileData?.profile.url
       ){
-        
+          
         this.alert = true
         this.alterType = "Warning"
         this.alterMessage = "No changes made in the data"

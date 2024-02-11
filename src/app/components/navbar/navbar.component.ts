@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -11,7 +12,8 @@ export class NavbarComponent implements OnInit {
   data!:any
   constructor(
     private service:AdminService,
-    private ngxCookieService: CookieService
+    private ngxCookieService: CookieService,
+    private router:Router
 
   ){}
   ngOnInit(): void {
@@ -36,11 +38,13 @@ export class NavbarComponent implements OnInit {
           localStorage.removeItem("adJwt")
           this.ngxCookieService.delete('adJwt')
           this.ngxCookieService.delete('adRtkn')
+          this.router.navigate(['/login'])
 
         }else  if(res.data.role === "user"){
           localStorage.removeItem("jwt")
           this.ngxCookieService.delete('jwt')
           this.ngxCookieService.delete('rtkn')
+          this.router.navigate(['/login'])
         }
       },
       error:(err)=>{

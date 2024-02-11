@@ -13,7 +13,7 @@ export class adminGuard implements CanActivate {
     if ((state.url !== loginRoute &&  state.url !== registerRoute) && token === null ) {
       this.router.navigate(['/login']);
       return false;
-    } else if ((state.url === loginRoute ||  state.url !== registerRoute ) && token !== null) { 
+    } else if ((state.url === loginRoute ||  state.url === registerRoute ) && token !== null) { 
       this.router.navigate(['/admin'])
       return false
     }
